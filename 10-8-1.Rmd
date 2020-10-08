@@ -16,5 +16,12 @@ x=1+1
 x
 #錯誤
 ```
-===
-[這是甚麼連結](http://www.nkust.edu.tw)
+
+```{r}
+y<-"1"
+print(y)
+```
+
+1. kjnjknjkn
+
+1.kmklmlkmlm
