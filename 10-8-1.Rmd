@@ -25,3 +25,11 @@ print(y)
 1. kjnjknjkn
 
 1.kmklmlkmlm
+
+| sex | nane | text |
+| --- | --- | --- |
+| 女 | 陳 | 2 |
+
+| sex | nane | text |
+| :-: | :-: | :-: |
+| 女 | 陳 | 2 |
