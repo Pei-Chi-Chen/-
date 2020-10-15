@@ -115,6 +115,7 @@ for ( t in 1:100){
   x<-sample(1000,20)
   x1<-mean(x)  
   x2=c(x1)
+  print(x2)
 }  
 mean(x2)
 ```
