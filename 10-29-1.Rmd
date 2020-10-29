@@ -1,0 +1,146 @@
+---
+title: "10-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+# 回顧上周
+# 10-29-1
+```{r}
+#100:->
+#/mu()<-100
+#/sd()
+#/se(stander error)<-/sd
+#把我們得到的100個樣本，重複抽1000次，(每次必須抽100個)然後得到1000個平均
+#mu,sd
+#percentile(2.5),mu,percentile(97.5)
+
+N<-100
+metasample<-rnorm(N,5,2)
+rndno<-as.integer(runif(N)*N)+1
+#因為會抽到小數點所以要*N，+1是因為0-99
+smp<-metasample[rndno]
+print(metasample)
+hist(metasample)
+hist(smp)
+```
+# 10-29-2
+```{r}
+x<-seq(-4,4,length=100)
+y<-dnorm(x)
+plot(x,y,type="l",col="blue",lwd=3,lty="dotted")
+```
+
+# 10-29-3(未解)
+```{r}
+x<-seq(-4,4,length=100)
+dy<-dnorm(x)
+plot(x,dy,type="l",col="blue",lwd=3,lty="solid",ylim = c(0,2))
+py<-pnorm(x)
+lines(x,py,lty="dotted",col="red")
+#lines、points是用來疊圖的，plot、hist會分成兩張圖(開新視窗)
+#qy<-qnorm(x)
+#lines(x,qy,lty="solid",col="green")
+```
+
+# 10-29-4(未解)
+```{r}
+N<-100
+metasample<-rnorm(N,5,2)
+rndno<-as.integer(runif(N)*N)+1
+#因為會抽到小數點所以要*N，成完區間+1是因為0-99
+smp<-metasample[rndno]
+hist(metasample)
+lx<-seq(min(metasample),max(metasample),length=100)
+ly<-dnorm(lx,mean(metasample),sd(metasample))
+#lines(lx,ly)，錯誤
+sx<-pnorm(lx)
+sy<-ly*sx*diff(lx)[1]#面積*密度
+lines(lx,sy)
+```
+
+# 10-29-5
+```{r}
+N<-100
+metasample<-rnorm(N,5,2)
+rndno<-as.integer(runif(N)*N)+1
+smp<-metasample[rndno]
+hist(metasample,breaks=30)#還是趨近常態
+hist(metasample,breaks=50)#d開始會向右向左偏移
+d1<-density(metasample)#平滑的密度函數density
+plot(d1)
+d2<-density(smp)
+plot(d2)
+```
+
+# 10-29-6(1000)
+```{r}
+N<-100
+bmu<-numeric(1000)
+#給他1000次的空間，不用也不會錯因為他允許如此，但一定要隨意給他一個初始職否則會發師錯誤
+metasample<-rnorm(N,5,2)
+for(i in 1:1000){
+  rndno<-as.integer(runif(N)*N)+1
+  smp<-metasample[rndno]#抽一次
+  bmu[i]<-mean(smp)#第?次
+}
+#上面100會是常態分佈
+p<-density(bmu)#要畫圖了
+plot(p)
+```
+
+# 10-29-6(10000)
+```{r}
+N<-10000
+bmu<-numeric(1000)
+#給他1000次的空間，不用也不會錯因為他允許如此，但一定要隨意給他一個初始職否則會發師錯誤
+metasample<-rnorm(N,5,2)
+for(i in 1:1000){
+  rndno<-as.integer(runif(N)*N)+1
+  smp<-metasample[rndno]#抽一次
+  bmu[i]<-mean(smp)#第?次
+}
+#上面100會是常態分佈
+p<-density(bmu)#要畫圖了
+plot(p)
+```
+
+# 10-29-6(500)
+```{r}
+N<-500
+bmu<-numeric(1000)
+#給他1000次的空間，不用也不會錯因為他允許如此，但一定要隨意給他一個初始職否則會發師錯誤
+metasample<-rnorm(N,5,2)
+for(i in 1:1000){
+  rndno<-as.integer(runif(N)*N)+1
+  smp<-metasample[rndno]#抽一次
+  bmu[i]<-mean(smp)#第?次
+}
+#上面100會是常態分佈
+p<-density(bmu)#要畫圖了
+plot(p)
+```
+
+# 10-29-6(quantile)
+```{r}
+N<-100
+bmu<-numeric(1000)
+#給他1000次的空間，不用也不會錯因為他允許如此，但一定要隨意給他一個初始職否則會發師錯誤
+metasample<-rnorm(N,5,2)
+for(i in 1:1000){
+  rndno<-as.integer(runif(N)*N)+1
+  smp<-metasample[rndno]#抽一次
+  bmu[i]<-mean(smp)#第?次
+}
+#上面100會是常態分佈
+p<-density(bmu)#要畫圖了
+plot(p)
+qq<-quantile(bmu)
+rug(qq,col="red")
+qq
+```
