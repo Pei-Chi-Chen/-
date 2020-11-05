@@ -11,3 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [week4](10-8-1.html)
 [week5](10-15-2.html)
+[week6](10-22-2.html)
+[week7](10-29-1.html)(10-29-2.html)
+[week8](11-5-1.html)(11-5-2.html)
+[week9](10-29-1.html)

@@ -1,0 +1,77 @@
+---
+title: "11-5-2"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+## 來解題(續10-29-3(未解)-1)
+```{r}
+x<-rnorm(200,5,2)
+h<-hist(x,breaks=10,probability = T,col="red",xlab="Miles Per Gallon",main="Histogram with Normal Curve")
+dx<-seq(0,10,length=40)
+dy<-dnorm(dx,5,2)#平均5，標準差2
+lines(dx,dy,t="l",col="red")
+plot(dx,dy,t="l",col="red",xlim=c(0,10),ylim=c(0,100))
+```
+
+## 來解題(續10-29-3(未解)-2)
+```{r}
+x<-rnorm(400,5,2)
+h<-hist(x,breaks=20,probability = T,col="red",xlab="Miles Per Gallon",main="Histogram with Normal Curve")
+dx<-seq(0,10,length=40)
+dy<-dnorm(dx,5,2)#平均5，標準差2
+lines(dx,dy,t="l",col="red")
+```
+
+## 完成函數-1
+```{r}
+N<-400
+sm<-5
+ss<-2
+data<-rnorm(N,sm,ss)
+h<-hist(x,breaks=20,probability = T,col="red",xlab="Miles Per Gallon",main="Histogram with Normal Curve")
+dx<-seq(sm-ss*3,sm+ss*3,length=40)
+dy<-dnorm(dx,sm,sm)#平均5，標準差2
+lines(dx,dy,t="l",col="red")
+```
+
+## 完成函數-2(綠線有問題)
+```{r}
+N<-400
+sm<-5
+ss<-2
+n<-300
+ee<-double(n)
+for (i in 1:n){
+  data<-rnorm(N,sm,ss)
+  ee[i]<-mean(data)
+}
+h<-hist(ee,breaks=20,probability = T,col="red",xlab="Miles Per Gallon",main="Histogram with Normal Curve")
+dx<-seq(sm-ss*3,sm+ss*3,length=40)
+dy<-dnorm(dx,sm,ss)#平均5，標準差2
+lines(dx,dy,t="l",col="green",lwd="4")
+```
+
+## 完成函數-2(母體+樣本)
+```{r}
+N<-400
+sm<-5
+ss<-2
+n<-300
+ee<-double(n)
+for (i in 1:n){
+  data<-rnorm(N,sm,ss)
+  ee[i]<-mean(data)
+}
+h<-hist(x,breaks=20,probability = T,col="red",xlab="Miles Per Gallon",main="Histogram with Normal Curve")
+dx<-seq(sm-ss*3,sm+ss*3,length=40)
+dy<-dnorm(dx,sm,ss)#平均5，標準差2
+lines(dx,dy,t="l",col="green",lwd="4")
+qx<-quantile(ee)
+rug(qx)
+```
