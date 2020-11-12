@@ -1,0 +1,72 @@
+---
+title: "11-12-2"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+## *1*標準差佔信賴區間百分比多少(z_score=1，代表一個標準差)
+```{r}
+right<-pnorm(1)
+left<-pnorm(-1)
+right-left
+```
+
+## 把*1*製作成函數(所以會和*1*相同)
+```{r}
+percentbysd<-function(sd){
+right<-pnorm(sd)
+left<-pnorm(-sd)
+return(right-left)
+}
+percentbysd(1)
+```
+
+## 
+```{r}
+x1<-function(arg1,arge2,arge3){
+  rst<-arg1*arge2*arge3
+  return(rst)#一定要加return
+}
+x1(2,3,1)
+```
+
+## 寫一個函數用來過濾-0.2到+0.2之間的值
+```{r}
+x2<-function(x){
+  rst<-x<=0.2
+  le2<-x[rst]
+  rst2<-le2>=-0.2
+  xx<-le2[rst2]
+  return(xx)
+}
+x<-rnorm(10)
+x2(x)
+```
+
+## 
+```{r}
+x2<-function(x,min,max){
+  rst<-x<=max
+  le2<-x[rst]
+  rst2<-le2>=min
+  xx<-le2[rst2]
+  return(xx)
+}
+x<-rnorm(10)
+x2(x,min=-0.2,max=0.2)
+```
+
+## 
+```{r}
+x2<-function(x){
+  le2<-x[x<=0.2]
+  xx<-le2[le2>=-0.2]
+  return(xx)
+}
+x<-rnorm(10)
+x2(x)
+```

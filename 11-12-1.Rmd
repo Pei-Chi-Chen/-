@@ -1,0 +1,106 @@
+---
+title: "11-12-1"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+## pnorm
+```{r}
+pnorm(0)#0.5
+pnorm(1)#0.8413447
+
+pnorm(2)#
+pnorm(-2)#
+pnorm(2)+pnorm(-2)#1
+```
+
+## 畫圖瞜(pnorm)-1(和2畫出來相同)
+```{r}
+z_scores<-seq(-3,3,.1)
+pvalues<-pnorm(z_scores)
+plot(z_scores,pvalues,type = "l",xlab="Quantiles",ylab="Probability",xaxt="n",main="CDF")
+axis(1, at=which(pvalues==pnorm(-2)),labels=round(qnorm(0.2),2))
+#cdf的x座標為??
+```
+
+## 畫圖瞜(pnorm)-2(和1畫出來相同)
+```{r}
+z_scores<-seq(-3,3,by=.1)
+pvalues<-pnorm(z_scores)
+plot(z_scores,pvalues,type = "l",xlab="Quantiles",ylab="Probability",xaxt="n",main="CDF")
+axis(1, at=which(z_scores==-2),labels=round(pnorm(-2),2))
+```
+
+## 
+```{r}
+z_scores<-seq(-3,3,length=100)
+pvalues<-pnorm(z_scores)
+plot(z_scores,pvalues,type = "l",xlab="Quantiles",ylab="Probability",xaxt="n",main="CDF")
+axis(1, at=which(pvalues == pnorm(qnorm(0,2))),labels=round(qnorm(0.2),2))
+axis(1, at=which(pvalues == pnorm(qnorm(0.4))),labels=round(qnorm(0.2),2))
+axis(1, at=which(pvalues == pnorm(qnorm(0.6))),labels=round(qnorm(0.2),2))
+```
+
+## 
+```{r}
+uu<-seq(0,1,length=100)
+uu<-uu[c(-1,-100)]#把-1和-100刪除
+z_scores<-qnorm(uu)
+pvalues<-pnorm(z_scores)
+plot(z_scores,pvalues,type = "l",xlab="Quantiles",ylab="Probability",xaxt="n",main="CDF")
+axis(1, at=which(round(pvalues,2) == pnorm(qnorm(0.2))),labels=round(qnorm(0.2),2))
+axis(1, at=which(pvalues == pnorm(qnorm(0.4))),labels=round(qnorm(0.4),2))
+axis(1, at=which(pvalues == pnorm(qnorm(0.6))),labels=round(qnorm(0.6),2))
+```
+
+## 嘗試(1)
+```{r}
+z_scores<-seq(-3,3,by=.1)
+pvalues<-pnorm(z_scores)
+plot(pvalues,type="l",xaxt="n")
+oo<-rep(F,length(z_scores))
+oo[3]<-T
+axis(1, at=which(oo),labels="xx")
+#which是號碼
+```
+
+
+## 嘗試(2)對瞜!!
+```{r}
+uu<-seq(0,1,length=100)
+uu<-uu[c(-1,-100)]#把-1和-100刪除
+z_scores<-qnorm(uu)
+pvalues<-pnorm(z_scores)
+plot(z_scores,pvalues,type="l",xlab="Quantiles",ylab="Probability",main="CDF")
+```
+
+## 去掉NA(清資料!!)-1
+```{r}
+uu<-seq(0,1,length=10)
+z_scores<-qnorm(uu)
+z_scores[3]<-NA
+which(z_scores==Inf)
+which(z_scores==-Inf)
+#which(z_scores==NA)
+is.na(z_scores)
+cleandata1<-z_scores[which(!is.na(z_scores))]
+cleandata1
+```
+
+## 去掉NA(清資料!!)-2
+```{r}
+uu<-seq(0,1,length=10)
+z_scores<-qnorm(uu)
+z_scores[3]<-NA
+which(z_scores==Inf)
+which(z_scores==-Inf)
+#which(z_scores==NA)
+is.na(z_scores)
+cleandata2<-z_scores[!is.na(z_scores)]
+cleandata2
+```

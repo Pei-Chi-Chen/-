@@ -1,0 +1,49 @@
+---
+title: "11-12-3"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+## HW1 在x<-rpois(30,2),要找出偶數
+```{r}
+x<-rpois(30,2)
+my_seq <-x
+for (i in my_seq) {
+    if (i %% 2 == 0) {
+        print(paste(i, "是偶數"))
+    } else {
+        print(paste(i, "是奇數"))
+    }
+}
+```
+
+## 1
+```{r}
+x<-rpois(30,2)
+for (i in x) {
+    if (i %% 2 == 0) {
+        print(i)
+    } 
+}
+```
+
+## 2
+```{r}
+x<-rpois(30,2)
+#表示在松柏分配下平均值為2下共有30個x
+x[x%%2==0]
+```
+
+## 3
+```{r}
+y<-function(v){
+  return(v[v%%2==0])
+}
+U<-rpois(30,2)
+y(U)
+```
