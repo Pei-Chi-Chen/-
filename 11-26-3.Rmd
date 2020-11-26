@@ -1,0 +1,48 @@
+---
+title: "Untitled"
+author: "11-26-3"
+date: "2020/11/26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+## 
+```{r}
+print("ab")
+print("mckddkas mopsm oskcal lslkcosko loso")
+cat("mckddkas mopsm oskcal \ lslkcosko loso")
+```
+
+## 
+```{r}
+x1<-list(c("a","b"),c("c","d"))
+x<-x1[[1]]
+for(item in x){
+  print(item)
+}
+#原是向量(X)，拿到的元素x[1]也是向量
+print("---------分隔線----------")
+x<-x1[1]
+for(item in x){
+  print(item)
+}
+#原是list(y)，拿到的元素y[1]也是list
+#既然拿到的是list，那要拿真正的內容就要用list
+```
+
+## 
+```{r}
+paste0("x","y")#在其他語言中的"x"+"y"
+paste("x","y")#和paste0("x","y")插在中間有沒有空白
+paste("x","y",sep="fn gg")
+paste(c("a","b","c"),sep="\t")
+paste("a","b","c",sep="\t")#同1
+paste(c("a","b","c"),collapse ="\t")#同1
+paste(c("a","b","c"),collapse =" ")#同2
+paste("a","b","c",sep =" ")#同2
+```

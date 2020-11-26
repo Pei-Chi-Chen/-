@@ -1,0 +1,121 @@
+---
+title: "Untitled"
+author: "11-26-2"
+date: "2020/11/26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+## 
+```{r}
+x1<-c(1,2,3)
+x2<-c(4,5,6)
+x3<-list(x1,x2)
+m1<-matrix(x1,1,3)
+m1[1,1]#一定要用中括號
+m1[1,2]#一定要用中括號
+m1[1,]
+m1[,1]
+m2<-matrix(x1,3,1)
+m2
+m2[,1]
+typeof(m2[,1])
+```
+
+## 寫函數搂(錯誤)
+```{r}
+mm<-function(rcon,ccnt,init){
+  v<-double(rcon*ccnt)#出現rcnt*ccnt的空格
+  v[1:rcon*ccnt]=init
+  return(matrix(v,rcon,ccnt))
+}
+mm(3,3,8)
+```
+
+## 寫函數搂(正確)
+```{r}
+mm<-function(rcon,ccnt,init){
+  total<-rcon*ccnt
+  v<-double(total)
+  v[1:total]<-init
+  rst<-matrix(v,rcon,ccnt)
+  return(rst)
+}
+mm(3,3,8)
+```
+
+##Q1 下列3個向量組成list
+```{r}
+x1<-runif(3)
+x2<-runif(3)
+x3<-runif(3)
+x<-list(x1,x2,x3)
+x#3
+xx<-c(x1,x2,x3)
+xx#9
+```
+
+## 錯誤
+```{r}
+mm<-function(rcon,ccnt,init){
+  total<-rcon*ccnt
+  v<-double(total)
+  v[1:total]<-init
+  rst<-matrix(v,rcon,ccnt)
+  return(rst)
+}
+x1<-runif(3)
+x2<-runif(3)
+x3<-runif(3)
+y<-list(x1,x2,x3)
+mm(3,3,y)
+```
+
+## Q2計算幾個函數大於0.5(法1)
+```{r}
+x7<-function(x){
+  rst<-x>=0.5
+  le2<-x[rst]
+  return(le2)
+}
+x1<-runif(3)
+x2<-runif(3)
+x3<-runif(3)
+x<-c(x1,x2,x3)
+C<-x7(x)
+C
+length(C)
+```
+
+## 計算幾個函數大於0.5(法2)
+```{r}
+xx<-function(x){
+  if(is.vector(x)){
+    return(x[x>0.5])
+  }
+}
+p<-xx(runif(10))
+p
+length(p)
+```
+
+## Q3寫一個函數，確認目前的子目錄中，有沒有一個檔案較"xx.txt"
+```{r}
+myf1<-function(allfile){
+  file<-dir()
+  rst<-length(file[file==allfile])
+  return(rst>0)
+}
+myf1("mm.R")
+```
+
+## 
+```{r}
+dir(path="c:/0542059")
+file.exists("c:/0542059/week4/mm.R")
+```

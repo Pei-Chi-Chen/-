@@ -1,0 +1,29 @@
+---
+title: "11-26-4"
+author: "11-26-3"
+date: "2020/11/26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+## 檔案放哪裡
+```{r}
+tempfile()
+cat(tempfile())
+```
+
+## 把目前所以檔案列表出來
+```{r}
+dir()
+getwd()
+dir(path="c:/0542059")
+file.exists("c:/0542059/-")
+dir.create("xx")#新增檔案
+dir()
+paste0(getwd(),"/","xx")
+file.exists("c:/0542059/week4/xx")
+```
