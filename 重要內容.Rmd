@@ -1,0 +1,22 @@
+---
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+## 
+```{r}
+getwd()# 看你檔案定位在?
+```
+
+## 
+```{r}
+version#看版本數
+```
+
+## 
+```{r}
+
+```

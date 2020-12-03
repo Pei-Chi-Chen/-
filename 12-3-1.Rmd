@@ -1,0 +1,106 @@
+---
+title: "12-3-1"
+author: "11-26-3"
+date: "2020/12/3"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+## 因子1
+```{r}
+fert<-c(10,20,20,50,10,50,20)
+f1<-c("a","a","a","b","b","c","c")
+fert=factor(fert)
+table(fert,f1)#交叉分析表(樞紐分析表)
+```
+
+## 因子2
+```{r}
+fert<-c(10,20,20,50,10,20,10,50,20)
+length(fert)
+f1<-c("高","高","高","中","中","低","低","低","低")
+length(f1)
+fert<-factor(fert)
+table(fert,f1)#交叉分析表(樞紐分析表)
+```
+
+## 因子2
+```{r}
+f1<-c("高","高","高","中","中","低","低","低","低")
+f1<-factor(f1,levels=c("低","中","高"),order=T)
+f2<-c("高","高","高","中","中","低","低","低","低")
+f2<-factor(f2)
+f1
+f2
+```
+
+## 因子3
+```{r}
+f1<-c("高","高","高","中","中","低","低","低","低")
+f1<-factor(f1,levels=c("低","中","高"),order=T)
+f2<-c("高","高","高","中","中","低","低","低","低")
+f2<-factor(f1)
+f1
+f2
+typeof(f1)#知道是整數(integer)
+#mean(f1)雖然知道是整數(integer)，但仍無法計算的
+summary(f1)
+str(f1)
+attributes(f1)#知道裡面有什麼函示名稱($levels$class)
+cc<-levels(f1)
+typeof(cc)
+cc[1]
+cc[2]
+cc[3]
+class(cc)#是向量(character)搂
+str(cc)
+typeof(cc)#變成向量(character)搂
+f2[1]#找不到
+f2[3]#找不到
+levels(f1[1])#找得到(同2)
+attr(f1,"levels")#找得到(同2)
+fert#有這些東西
+levels(fert)#裡面有哪些項目
+as.numeric(levels(fert)[fert])#轉成數字
+mean(as.numeric(levels(fert)[fert]))#就可以計算瞜
+```
+
+## 讀檔案瞜
+```{r}
+mydata<-read.csv("trees91.csv",encoding = "UTF-8")
+#mydata<-read.csv("trees91.csv") 如果沒中文
+mydata
+View(mydata)
+typeof(mydata)
+class(mydata)
+str(mydata)
+attributes(mydata)
+#name(mydata)
+row.names(mydata)
+summary(mydata$c)
+```
+
+## 看你檔案定位在?
+```{r}
+getwd()# 看你檔案定位在?
+version#看版本數
+```
+
+## 
+```{r}
+mydata$C<-factor(mydata$C)
+mydata$N<-factor(mydata$N)
+summary(mydata)
+barplot(table(mydata$C))#一定要加table(mydata$C)
+```
+
+## 中文
+```{r}
+mydata1<-read.csv("trees91.csv",encoding = "UTF-8")
+mydata1$`中文`<-factor(mydata1$`中文`)
+mydata1
+```
